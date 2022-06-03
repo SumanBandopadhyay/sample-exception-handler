@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: "2022-06-03T19:40:22Z"
+  generation: 1
+  labels:
+    app: sample-exception-handler
+  name: sample-exception-handler
+  namespace: default
+  resourceVersion: "3412"
+  uid: 5a7f20bb-ec36-42c8-9517-6f20149a7574
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: sample-exception-handler
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sample-exception-handler
+    spec:
+      containers:
+      - image: sumanbando/sample-exception-handler
+        imagePullPolicy: Always
+        name: sample-exception-handler
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sample-exception-handler
+  name: sample-exception-handler
+spec:
+  ports:
+  - name: 9001-9001
+    port: 9001
+    protocol: TCP
+    targetPort: 9001
+  selector:
+    app: sample-exception-handler
+  type: ClusterIP
+status:
+  loadBalancer: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sample-exception-handler
+  name: sample-exception-handler
+spec:
+  ports:
+  - name: 9001-9001
+    port: 9001
+    protocol: TCP
+    targetPort: 9001
+  selector:
+    app: sample-exception-handler
+  type: ClusterIP
+status:
+  loadBalancer: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-06-03T19:42:15Z"
+  labels:
+    app: sample-exception-handler
+  name: sample-exception-handler
+  namespace: default
+  resourceVersion: "3564"
+  uid: ec81a1ac-39d5-47e0-a5d3-bd4304f1d0c1
+spec:
+  clusterIP: 10.96.30.83
+  clusterIPs:
+  - 10.96.30.83
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 9001-9001
+    port: 9001
+    protocol: TCP
+    targetPort: 9001
+  selector:
+    app: sample-exception-handler
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
