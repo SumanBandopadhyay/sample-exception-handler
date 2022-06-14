@@ -10,4 +10,4 @@ The yaml deployment file will be created.
 #### Start the deployment
 * kubectl apply -f sample-exception-handler-deployment.yaml
 * kubectl get all
-* kubectl port-forward svc/sample-exception-handler 9001:9001
+* kubectl port-forward service/sample-exception-handler 9001:9001
