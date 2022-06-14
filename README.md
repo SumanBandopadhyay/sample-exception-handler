@@ -1,5 +1,10 @@
 # sample-exception-handler
 
+###Features
+- Exception Handling
+- Kubernetes
+- Actuator
+
 ### Kubernetes
 * $ kubectl create deployment sample-exception-handler --image=sumanbando/sample-exception-handler --dry-run=client -o=yaml > sample-exception-handler-deployment.yaml
 * $ echo --- >> sample-exception-handler-deployment.yaml
