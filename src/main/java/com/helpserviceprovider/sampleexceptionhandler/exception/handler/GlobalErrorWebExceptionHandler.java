@@ -2,8 +2,6 @@ package com.helpserviceprovider.sampleexceptionhandler.exception.handler;
 
 import com.helpserviceprovider.sampleexceptionhandler.GlobalErrorAttributes;
 import com.helpserviceprovider.sampleexceptionhandler.data.ErrorResponse;
-import com.helpserviceprovider.sampleexceptionhandler.exception.CustomException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
@@ -15,23 +13,18 @@ import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.*;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 import static org.springframework.boot.web.error.ErrorAttributeOptions.Include.STACK_TRACE;
 import static org.springframework.boot.web.error.ErrorAttributeOptions.defaults;
 import static org.springframework.boot.web.error.ErrorAttributeOptions.of;
 
-@Slf4j
 @Component
 @Order(-2)
 public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHandler {
@@ -74,7 +67,7 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
     }
 
     private boolean isTraceEnabled(String query) {
-        return StringUtils.hasLength(query) && query.contains("true");
+        return StringUtils.hasLength(query) && query.contains("trace=true");
     }
 
 }
